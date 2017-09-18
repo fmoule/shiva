@@ -1,0 +1,27 @@
+
+##### Fichiers liés à l'OS
+.DS_Store
+
+##### Projets JAVA
+
+## Fichiers compilés et/ou générés
+*.class
+*.war
+*.ear
+target/
+hs_err_pid*
+
+## Fichiers générés 
+ng/
+node_modules/
+
+#### IDE's
+
+## Intellij
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#### Divers
+*.log
