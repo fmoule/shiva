@@ -1,6 +1,5 @@
 package org.laruche.shiva.core.plugin
 
-import scala.collection.immutable._
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -11,64 +10,112 @@ import scala.collection.mutable.ArrayBuffer
   *
   * @author Frédéric Moulé
   */
-trait PluginManager {
+trait PluginManager extends Plugin {
 
-  ///// Fonctions de recherches :
+    ///// Fonctions générales :
 
-  /**
-    * Retourne la liste des plugins.
-    *
-    * @return liste des plugins
-    */
-  def plugins: Seq[Plugin]
+    /**
+      * Retourne la liste des plugins.
+      *
+      * @return liste des plugins
+      */
+    def plugins: Seq[Plugin]
 
-  /**
-    * Méthode permettant de trouver les plugins vérifiant
-    * le prédicat passé en paramètre. <br />
-    *
-    * @param predicate :  prédicat jouant le rôle de critère.
-    * @return "Liste" des plugins trouvés
-    */
-  def findPlugin(predicate: Plugin => Boolean): Seq[Plugin]
+    /**
+      * Méthode permettant de trouver les plugins vérifiant
+      * le prédicat passé en paramètre. <br />
+      *
+      * @param predicate :  prédicat jouant le rôle de critère.
+      * @return "Liste" des plugins trouvés
+      */
+    def findPlugin(predicate: Plugin => Boolean): Seq[Plugin]
 
-  /**
-    * Ajoute une liste de plugins
-    *
-    * @param plugins : plugins
-    */
-  def +=(plugins: Seq[Plugin]): Unit
+    /**
+      * Retourne le nombre de plugin
+      *
+      * @return nombre de plugins
+      */
+    def size: Int = plugins.size
 
-  def +=(plugins: Plugin*): Unit = {
-    this += plugins.toList
-  }
+
+    ///// Définitions des opérateurs :
+
+    /**
+      * Ajoute une liste de plugins
+      *
+      * @param plugins : plugins
+      */
+    def +=(plugins: Plugin*): PluginManager
+
+    /**
+      * Permet de supprimer une liste de plugin
+      * au gestionnaire.
+      *
+      * @param plugins : Liste de plugins à supprimer
+      */
+    def -=(plugins: Plugin*): PluginManager
+
 }
-
 
 ///// Simple implémentation
 
-class SimplePluginManager extends PluginManager {
-  private val pluginList: collection.mutable.ArrayBuffer[Plugin] = new ArrayBuffer[Plugin]
+/**
+  * Simple gestionnaire de plugins.
+  *
+  * @author Frédéric Moulé
+  */
+class SimplePluginManager(id: String = "", theDesc: String = "") extends PluginManager {
+    override protected val theId: String = id
+    override protected var desc: String = theDesc
+    private val pluginList: ArrayBuffer[Plugin] = new ArrayBuffer[Plugin]
 
-  //// Méthodes du trait PluginManager :
+    ///// Méthode du trait Plugin
 
-  override def plugins: Seq[Plugin] = pluginList.toList
-
-  override def findPlugin(predicate: (Plugin) => Boolean): Seq[Plugin] = {
-    if (predicate == null || pluginList.isEmpty) {
-      return List()
+    /**
+      * Démarrre le plugin. <br />
+      *
+      * @throws PluginException : En cas de problème
+      */
+    override def start(): Unit = {
+        super.start()
     }
-    return pluginList.toStream.find(predicate).toList
-  }
 
-  /**
-    * Ajoute une liste de plugins
-    *
-    * @param plugins : plugins
-    */
-  override def +=(plugins: Seq[Plugin]): Unit = {
-    for (plugin <- pluginList ) {
-      pluginList += plugin
+    /**
+      * Arrête le plugin
+      *
+      * @throws PluginException : En cas de problème
+      */
+    override def stop(): Unit = {
+        super.stop()
+        this.pluginList.clear()
     }
-  }
+
+
+    //// Méthodes du trait PluginManager :
+
+    override def plugins: Seq[Plugin] = pluginList.toList
+
+    override def findPlugin(predicate: Plugin => Boolean): Seq[Plugin] = {
+        if (predicate == null || pluginList.isEmpty) {
+            return List()
+        }
+        return pluginList.toStream.find(predicate).toList
+    }
+
+    ///// Opérateurs :
+
+    override def +=(plugins: Plugin*): PluginManager = {
+        for (plugin <- plugins) {
+            pluginList += plugin
+        }
+        return this
+    }
+
+    override def -=(plugins: Plugin*): PluginManager = {
+        for (plugin <- plugins) {
+            pluginList -= plugin
+        }
+        return this
+    }
 }
 
