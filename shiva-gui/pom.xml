@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>shiva</artifactId>
+        <groupId>org.laruche.shiva</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>shiva-gui</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Shiva GUI</name>
+    <description>Client lourd de l'application</description>
+
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <compilerPlugins>
+                        <compilerPlugin>
+                            <groupId>org.scalamacros</groupId>
+                            <artifactId>paradise_${scala.version}</artifactId>
+                            <version>2.1.1</version>
+                        </compilerPlugin>
+                    </compilerPlugins>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- Liste des modules -->
+
+        <dependency>
+            <groupId>org.laruche.shiva</groupId>
+            <artifactId>shiva-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.laruche.shiva</groupId>
+            <artifactId>shiva-core</artifactId>
+        </dependency>
+
+        <!-- ///// Liste des librairies générales ///// -->
+
+        <!-- Scala -->
+
+        <dependency>
+            <groupId>org.scalafx</groupId>
+            <artifactId>scalafx_${scala.compat.version}</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalafx</groupId>
+            <artifactId>scalafxml-core-sfx8_${scala.compat.version}</artifactId>
+        </dependency>
+
+        <!-- -->
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <!-- ///// Librairies de tests ///// -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+</project>
