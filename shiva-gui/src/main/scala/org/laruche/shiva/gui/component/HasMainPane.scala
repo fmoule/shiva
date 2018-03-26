@@ -1,6 +1,7 @@
-package org.laruche.shiva.gui.controller
+package org.laruche.shiva.gui.component
 
-import scalafx.scene.layout.Pane
+import javafx.scene.layout.Pane
+
 
 /**
   * Trait représentant tous les composants graphiques possédant

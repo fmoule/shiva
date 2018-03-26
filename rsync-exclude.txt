@@ -1,0 +1,17 @@
+
+## Fichiers IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+
+## Fichiers Clion
+Debug
+
+## Fichiers Netbeans
+nbproject
+
+#### Fichiers de compilation ###
+target
+*.class
+
