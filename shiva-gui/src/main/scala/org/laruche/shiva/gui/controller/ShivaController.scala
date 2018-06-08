@@ -4,6 +4,12 @@ import org.laruche.shiva.gui.ShivaApplication
 
 import scalafxml.core.FXMLLoader
 
+/**
+  * Trait définissant tous les controlleurs
+  * de l'application Shiva. <br />
+  *
+  * @author Frédéric Moulé
+  */
 trait ShivaController {
   protected var _shivaApplication: ShivaApplication
 
@@ -23,20 +29,4 @@ trait ShivaController {
     this._shivaApplication = appli
   }
 
-}
-
-object ShivaController {
-
-  /**
-    * Méthode permettant de retourner un élément à partir
-    * du "loader" et de l'identifiant de l'élément. <br />
-    *
-    * @param loader : FXML Loader
-    * @param id     : Identifiant de l'élément à rechercher
-    * @tparam T : Type de l'élément
-    * @return élément
-    */
-  def getElement[T](loader: FXMLLoader, id: String): T = {
-    return loader.getNamespace.get(id).asInstanceOf[T]
-  }
 }

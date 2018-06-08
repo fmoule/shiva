@@ -2,6 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Information Maven-->
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>shiva</artifactId>
@@ -11,6 +13,7 @@
     <artifactId>shiva-gui</artifactId>
     <packaging>jar</packaging>
 
+    <!-- Informations générales -->
     <name>Shiva GUI</name>
     <description>Client lourd de l'application</description>
 
@@ -33,7 +36,6 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.2</version>
                 <configuration>
                     <compilerPlugins>
                         <compilerPlugin>

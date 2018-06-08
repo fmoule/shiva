@@ -1,6 +1,6 @@
 package org.laruche.shiva.commons.beans.project
 
-import org.laruche.shiva.commons.beans.HasId
+import org.laruche.shiva.commons.beans.commons.HasId
 import org.laruche.shiva.commons.beans.project.task.Task
 
 import scala.collection.mutable

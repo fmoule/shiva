@@ -14,15 +14,6 @@ trait PluginManager extends Plugin
   ///// Fonctions générales :
 
   /**
-    * Retourne la liste des plugins.
-    *
-    * @return liste des plugins
-    */
-  def plugins: Seq[Plugin]
-
-  def plugins_=(plugins: Seq[Plugin]): Unit = this.findPlugin(plugin => true)
-
-  /**
     * Méthode permettant de trouver les plugins vérifiant
     * le prédicat passé en paramètre. <br />
     *
@@ -47,5 +38,16 @@ trait PluginManager extends Plugin
     * @param plugins : Liste de plugins à supprimer
     */
   def -=(plugins: Plugin*): PluginManager
+
+  ///// Getters & Setters :
+
+  /**
+    * Retourne la liste des plugins.
+    *
+    * @return liste des plugins
+    */
+  def plugins: Seq[Plugin]
+
+  def plugins_=(plugins: Seq[Plugin]): Unit = this.findPlugin(plugin => true)
 
 }

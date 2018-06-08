@@ -1,7 +1,7 @@
 package org.laruche.shiva.commons.beans.project.task
 
+import org.laruche.shiva.commons.beans.commons.{HasComplexity, HasDescription, HasId}
 import org.laruche.shiva.commons.beans.project.task.Task.{NOT_FINISHED, TaskStatus}
-import org.laruche.shiva.commons.beans.{HasComplexity, HasDescription, HasId}
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer

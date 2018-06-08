@@ -1,6 +1,6 @@
 package org.laruche.shiva.core.plugin
 
-import org.laruche.shiva.commons.beans.{HasDescription, HasId, HasName}
+import org.laruche.shiva.commons.beans.commons.{HasDescription, HasId, HasName}
 
 /**
   * Trait représentant les plugins. <br />
